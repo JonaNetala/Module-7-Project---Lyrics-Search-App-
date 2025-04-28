@@ -1,34 +1,49 @@
-<!-- Module 7 Project - Lyrics Search App 🎤 -->
+<!-- Module 7 Project - Lyrics Search App 🎤 (Final Version) -->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LyricsSearch</title>
+  <title>LyricsSearch 🎵</title>
   <link rel="stylesheet" href="styles.css" />
   <script src="script.js" defer></script>
 </head>
 
 <body>
   <header>
-    <h1>LyricsSearch</h1>
+    <h1>LyricsSearch 🎵</h1>
+
     <form id="form">
-      <input
-        type="text"
-        id="search"
-        placeholder="Enter artist or song name..."
-      />
-      <button>Search</button>
+      <input type="text" id="search" placeholder="Search for artist or song..." />
+      <button type="submit">Search</button>
     </form>
+
+    <div class="options">
+      <button id="clear-history" class="small-btn">Clear History</button>
+      <button id="view-favorites" class="small-btn">⭐ View Favorites</button>
+      <button id="clear-favorites" class="small-btn">Clear Favorites</button>
+    </div>
+
+    <div class="toggle-switch">
+      <label class="switch">
+        <input type="checkbox" id="theme-toggle" />
+        <span class="slider"></span>
+      </label>
+    </div>
   </header>
 
-  <div id="result" class="container">
-    <p>Results will be displayed here</p>
-  </div>
+  <section id="recent-searches" class="container"></section>
 
-  <!-- We will paginate our results -->
-  <div id="more" class="container centered"></div>
+  <main>
+    <div id="result" class="container">
+      <p>Results will appear here.</p>
+    </div>
+
+    <div id="more" class="container centered"></div>
+  </main>
+
+  <footer>
+    <p>🎵 Powered by lyrics.ovh</p>
+  </footer>
 </body>
-
 </html>

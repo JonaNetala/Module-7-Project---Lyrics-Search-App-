@@ -1,131 +1,236 @@
-/* Module 7 Project - Lyrics Search App 🎤 */
-
-/* Reset and base styles */
+/* Module 7 Project - Lyrics Search App 🎤 (Final Version) */
+/* === Basic Reset === */
 * {
   box-sizing: border-box;
-}
-
-body {
-  background-color: #fff;
-  font-family: Arial, Helvetica, sans-serif;
   margin: 0;
-}
-
-button {
-  cursor: pointer;
-}
-
-button:active {
-  transform: scale(0.95);
-}
-
-input:focus,
-button:focus {
-  outline: none;
-}
-
-/* Header styling with background image overlay */
-header {
-  background-image: url('https://images.unsplash.com/photo-1510915361894-db8b6010d602');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 100px 0;
-  position: relative;
-}
-
-header::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
-header * {
-  z-index: 1;
-}
-
-header h1 {
-  margin: 0 0 30px;
-}
-
-/* Form styling */
-form {
-  position: relative;
-  width: 500px;
-  max-width: 100%;
-}
-
-form input {
-  border: 0;
-  border-radius: 50px;
-  font-size: 16px;
-  padding: 15px 30px;
-  width: 100%;
-}
-
-form button {
-  position: absolute;
-  top: 2px;
-  right: 2px;
-  background-color: #e056fd;
-  border: 0;
-  border-radius: 50px;
-  color: #fff;
-  font-size: 16px;
-  padding: 13px 30px;
-}
-
-/* Result section */
-.btn {
-  background-color: #8d56fd;
-  border: 0;
-  border-radius: 10px;
-  color: #fff;
-  padding: 4px 10px;
-}
-
-ul.songs {
-  list-style-type: none;
   padding: 0;
 }
 
-ul.songs li {
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #7f00ff, #00c6ff);
+  min-height: 100vh;
+  color: #222;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 10px 0;
+  flex-direction: column;
 }
 
-.container {
-  margin: 30px auto;
-  max-width: 100%;
-  width: 500px;
-}
-
-.container h2 {
-  font-weight: 300;
-}
-
-.container p {
+/* === Header Section === */
+header {
+  padding: 20px;
   text-align: center;
+  position: relative;
 }
 
-/* Pagination buttons */
+header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+form {
+  margin-bottom: 15px;
+}
+
+form input {
+  padding: 10px;
+  width: 250px;
+  max-width: 90%;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+}
+
+form button {
+  padding: 10px 20px;
+  margin-left: 10px;
+  background: #e056fd;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+form button:hover {
+  background: #c845e3;
+}
+
+/* === Extra Buttons (Clear History, Favorites) === */
+.options {
+  margin-top: 10px;
+}
+
+.small-btn {
+  margin: 5px;
+  padding: 5px 10px;
+  background: #ffb347;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+.small-btn:hover {
+  background: #ffa500;
+}
+
+/* === Toggle Switch === */
+.toggle-switch {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  background-color: #ccc;
+  border-radius: 24px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #8d56fd;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* === Main Container === */
+.container {
+  padding: 20px;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 800px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+}
+
 .centered {
   display: flex;
   justify-content: center;
 }
 
-.centered button {
-  transform: scale(1.3);
-  margin: 15px;
+/* === Song Results === */
+ul.songs {
+  list-style: none;
+}
+
+ul.songs li {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  padding: 10px;
+  background: #eee;
+  border-radius: 8px;
+  align-items: center;
+}
+
+ul.songs li:hover {
+  background: #dcdcdc;
+}
+
+.btn {
+  background-color: #8d56fd;
+  color: white;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn:hover {
+  background-color: #693bb7;
+}
+
+/* === Lyrics Display === */
+#result h2 {
+  margin-bottom: 10px;
+}
+
+#result pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  background: #111;
+  color: #eee;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+/* === Footer === */
+footer {
+  text-align: center;
+  padding: 15px;
+  font-size: 14px;
+  background: transparent;
+  margin-top: auto;
+}
+
+/* === Dark Mode === */
+body.dark {
+  background: linear-gradient(to right, #000000, #434343);
+  color: white;
+}
+
+body.dark .container {
+  background: rgba(50, 50, 50, 0.8);
+}
+
+body.dark ul.songs li {
+  background: #444;
+}
+
+body.dark ul.songs li:hover {
+  background: #555;
+}
+
+body.dark form button {
+  background: #8d56fd;
+}
+
+body.dark .small-btn {
+  background: #ff8c00;
+}
+
+body.dark .small-btn:hover {
+  background: #ff7700;
+}
+
+body.dark footer {
+  color: white;
 }
